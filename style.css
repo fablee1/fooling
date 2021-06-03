@@ -98,7 +98,7 @@ body {
 }
 
 #outputs {
-    width: 50%;
+    width: 80%;
     min-width: 300px;
     background-color: ivory;
     padding: 20px;
@@ -106,19 +106,76 @@ body {
     border-radius: 10px;
 }
 
-#outputs span {
+#actions > span, #fetched > span {
     font-size: 30px;
     font-weight: bold;
 }
 
 #outputs ol {
     border-top: 1px solid black;
+    padding: 0;
     padding-top: 10px;
-}
-
-#outputs li {
 }
 
 h3 {
     text-align: center;
+}
+
+#settings {
+    width: 80%;
+    min-width: 300px;
+    background-color: ivory;
+    padding: 20px;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+#settings p {
+    font-weight: bold;
+}
+
+#fetchControls button:nth-child(1) {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+#fetchControls button:nth-child(2) {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.fetchedBtns {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#fetched ol {
+    max-height: 350px;
+    overflow: auto;
+    border-bottom: 1px solid black;
+}
+
+#fetched ol > button {
+    background-color: #2f4f4f;
+    color: white;
+    border: 1px solid black;
+    border-radius: 8px;
+    text-align: left;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#fetched ol > button:hover {
+    background-color: #61a8a8;
+}
+
+#fetched ol > button:focus {
+    box-shadow: none;
+}
+
+#fetched ol > .collapse, #fetched ol .card  {
+    background-color: #2f4f4f;
+    color: white;
 }
