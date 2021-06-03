@@ -5,15 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eraser</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body style="background-color: darkslategrey">
+    <div id="loginWrapper">
+      <div id="login">
+        <form>
+          <h2>Login to get your<br>Strive API token</h2>
+          <p id="loginMessage"></p>
+          <label for="email">E-mail:</label><br>
+          <input type="email" id="email" placeholder="E-mail" required><br>
+          <label for="password" required>Password:</label><br>
+          <input type="password" id="password" placeholder="Password">
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
     <h1>The button below erases comments.</h1>
     <button onclick="eraseEverything()">ERASE ALL</button>
     <p>
       The source code can be found in my repo:<br />
       <a href="https://github.com/Mike-OxHuge/fooling">GitHub</a>
     </p>
-    <span style="font-size: 0.7rem">See the console for outputs.</span>
+    <div id="outputs">
+      <span>Outputs:</span>
+      <ol>
+        <h3>No Actions Yet</h3>
+      </ol>
+    </div>
     <script src="./index.js"></script>
   </body>
 </html>
