@@ -26,7 +26,7 @@ const eraseEverything = async () => {
       if (data.length === 0) {
         console.log(`There's no comments to erase`);
       } else {
-        Console.log(`Initiating wiping of the database`);
+        console.log(`Initiating wiping of the database`);
         for (let i = 0; i < data.length; i++) {
           await fetch(
             `https://striveschool-api.herokuapp.com/api/comments/${data[i]._id}`,
