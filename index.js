@@ -50,11 +50,14 @@ const login = async (e) => {
   const response = await fetch(`https://striveschool-api.herokuapp.com/api/account/login?username=${email}&password=${password}`, { method: "POST" })
   if(await response.ok) {
     const data = await response.json()
-    localStorage.setItem('token', data.access_token)
+    // localStorage.setItem('token', data.access_token)
 
     loginMessage.innerText = 'Succesfully logged in!'
     loginMessage.style.color = 'green'
-    setTimeout(() => loginModal.style.display = 'none', 2000)
+    loginModal.style.animation = 'fadeOut 2s ease-in infinite'
+    setTimeout(() => {
+      loginModal.style.display = 'none'
+    }, 2000)
   } else {
     loginMessage.innerText = 'Invalid Email/Password, try again.'
     loginMessage.style.color = 'red'
@@ -66,6 +69,8 @@ window.onload = () => {
   if(!localStorage.getItem('token')) {
     loginModal.style.display = 'block'
   }
+
+  setInterval(() => console.log('ok'), 1000)
 
   document.getElementsByTagName('form')[0].addEventListener('submit', (e) => login(e))
 }
