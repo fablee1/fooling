@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eraser</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
   </head>
   <body style="background-color: darkslategrey">
@@ -21,18 +22,42 @@
         </form>
       </div>
     </div>
-    <h1>The button below erases comments.</h1>
-    <button onclick="eraseEverything()">ERASE ALL</button>
+    
+    <h1 class="text-light mt-5">Comment Auto Deletion Tool</h1>
+
+    <div id="settings" class="row p-1">
+      <p class="mt-2">1. Press the auto-fetch button to start autoFetching new comments, press it once more to stop.</p>
+      <p>2. Press the manual fetch button to manually fetch comments</p>
+      <p>3. Set auto deletion to automatically delete any new comment</p>
+    </div>
+    
     <p>
       The source code can be found in my repo:<br />
       <a href="https://github.com/Mike-OxHuge/fooling">GitHub</a>
     </p>
-    <div id="outputs">
-      <span>Outputs:</span>
-      <ol>
-        <h3>No Actions Yet</h3>
-      </ol>
+    <div class="row" id="outputs">
+      <div class="col-12 col-md-6 text-center border-end border-dark" id="actions">
+        <span>Last actions</span>
+        <ol>
+          <h3>No Actions Yet</h3>
+        </ol>
+      </div>
+      <div class="col-12 col-md-6" id="fetched">
+        <div id='fetchControls' class="d-flex align-items-center mb-2">
+          <h3 class="w-100 text-center">Fetched</h3>
+          <div>
+            <button class="btn btn-danger w-100">Auto-Fetch Off</button>
+            <button class="btn btn-info w-100">Manual Fetch</button>
+          </div>
+        </div>
+        <ol>
+          <h3>Nothing fetched yet</h3>
+        </ol>
+        <button class="btn btn-danger w-100 disabled" id="deleteAllBtn">Delete All</button>
+      </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="./index.js"></script>
   </body>
 </html>
