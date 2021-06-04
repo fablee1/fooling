@@ -3,23 +3,28 @@ let authToken
 const loginModal = document.querySelector('#loginWrapper')
 const loginMessage = document.querySelector('#loginMessage')
 const fetchedList = document.querySelector('#fetched ol')
+const actionsList = document.querySelector('#actions ol')
 
 const autoFetchbtn = document.querySelectorAll('#fetchControls button')[0]
 const manualFetchbtn = document.querySelectorAll('#fetchControls button')[1]
 const deleteAllButton = document.getElementById('deleteAllBtn')
 
 let autoFetchId = null
+let actionsEmpty = true
 
 let comments = []
-let countCurrent = 0
+let countCurrent = 1
 
 const eraseEverything = async () => {
   if (comments.length === 0) {
     console.log(`There's no comments to erase`);
   } else {
     console.log(`Initiating wiping of the database`);
-    outputList.innerHTML = ''
-    for (let i = 0; i < comments.length; i++) {
+    if(actionsEmpty) {
+      actionsList.innerHTML = ''
+      actionsEmpty = false
+    }
+    for (let i = 0; i < comments.length; i++) { 
       await fetch(
         `https://striveschool-api.herokuapp.com/api/comments/${comments[i]._id}`,
         {
@@ -30,11 +35,36 @@ const eraseEverything = async () => {
         }
       );
       const li = document.createElement('li')
-      li.innerText = `Operation №${i}: The comment with ID: ${comments[i]._id} has been deleted`
-      outputList.appendChild(li)
+
+      li.innerHTML = `
+        <button class="btn fetchedBtns d-flex" type="button" data-bs-toggle="collapse" data-bs-target="#action${countCurrent}" aria-expanded="false" aria-controls="action${countCurrent}">
+          <div class="me-auto"><strong>Operation №${countCurrent}:</strong> The comment with ID: ${comments[i]._id} has been deleted</div>
+          <div>
+            <span class="moreInfo">More Info</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+            </svg>
+          </div>
+        </button>
+        <div class="collapse" id="action${countCurrent}">
+          <div class="card card-body">
+            <div class="d-flex">
+              <p class="me-auto">Rate: ${comments[i].rate}</p>
+              <p>Author: ${comments[i].author}</p>
+            </div>
+            <p>Comment: ${comments[i].comment}</p>
+          </div>
+        </div>
+      `
+
+      countCurrent ++
+
+
+      actionsList.innerHTML += li.innerHTML
     }
     console.log(`There's no comments left`);
   }
+  fetchData()
 };
 
 const renderFetched = () => {
@@ -82,7 +112,6 @@ const fetchData = async () => {
     if(await response.ok) {
       const data = await response.json()
       comments = data
-      countCurrent = data.length
       renderFetched()
     } else {
       console.log('fetch error')

@@ -157,6 +157,11 @@ h3 {
     border-bottom: 1px solid black;
 }
 
+#actions ol {
+    max-height: 450px;
+    overflow: auto;
+}
+
 #fetched ol > button {
     background-color: #2f4f4f;
     color: white;
